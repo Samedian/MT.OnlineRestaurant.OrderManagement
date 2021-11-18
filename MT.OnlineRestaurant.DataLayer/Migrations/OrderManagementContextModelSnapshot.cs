@@ -15,28 +15,32 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.LoggingInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("ActionName")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("('')")
-                        .HasMaxLength(250);
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("ControllerName")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("('')")
-                        .HasMaxLength(250);
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("Description")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValueSql("('')");
 
                     b.Property<DateTime?>("RecordTimeStamp")
@@ -53,12 +57,14 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("DeliveryAddress")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValueSql("('')");
 
                     b.Property<DateTime>("RecordTimeStamp")
@@ -73,30 +79,36 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
 
                     b.Property<int?>("TblCustomerId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblCustomerID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblOrderStatusId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblOrderStatusID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblPaymentTypeId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblPaymentTypeID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblRestaurantId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblRestaurantID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -111,13 +123,15 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
-                    b.Property<bool>("Active");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -131,17 +145,21 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
 
                     b.Property<int?>("TblFoodOrderId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblFoodOrderID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblMenuId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblMenuID")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -154,8 +172,9 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -170,30 +189,38 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                     b.Property<string>("Remarks")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValueSql("('')");
 
                     b.Property<int>("TblCustomerId")
+                        .HasColumnType("int")
                         .HasColumnName("tblCustomerID");
 
                     b.Property<int>("TblFoodOrderId")
+                        .HasColumnType("int")
                         .HasColumnName("tblFoodOrderID");
 
                     b.Property<int>("TblPaymentStatusId")
+                        .HasColumnType("int")
                         .HasColumnName("tblPaymentStatusID");
 
                     b.Property<int>("TblPaymentTypeId")
+                        .HasColumnType("int")
                         .HasColumnName("tblPaymentTypeID");
 
                     b.Property<string>("TransactionId")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
                         .HasColumnName("TransactionID")
-                        .HasDefaultValueSql("('0000000000')")
-                        .HasMaxLength(20);
+                        .HasDefaultValueSql("('0000000000')");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -210,8 +237,9 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -226,12 +254,15 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -242,8 +273,9 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -258,12 +290,15 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -274,8 +309,9 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -290,12 +326,15 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                     b.Property<string>("Type")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -306,8 +345,9 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<DateTime>("FromDate")
                         .ValueGeneratedOnAdd()
@@ -315,7 +355,7 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                         .HasDefaultValueSql("((0))");
 
                     b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -329,21 +369,25 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
 
                     b.Property<int?>("TblCustomerId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblCustomerID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblOrderStatusId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblOrderStatusID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblPaymentTypeId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblPaymentTypeID")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblRestaurantId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblRestaurantID")
                         .HasDefaultValueSql("((0))");
 
@@ -352,9 +396,11 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -369,13 +415,15 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
-                    b.Property<bool>("Active");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("RecordTimeStamp")
                         .ValueGeneratedOnAdd()
@@ -389,16 +437,20 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
 
                     b.Property<int?>("TableNo")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<int?>("TblTableOrderId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("tblTableOrderID")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserCreated");
+                    b.Property<int>("UserCreated")
+                        .HasColumnType("int");
 
-                    b.Property<int>("UserModified");
+                    b.Property<int>("UserModified")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -418,6 +470,10 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                         .WithMany("TblFoodOrder")
                         .HasForeignKey("TblPaymentTypeId")
                         .HasConstraintName("FK_tblFoodOrder_tblPaymentTypeID");
+
+                    b.Navigation("TblOrderStatus");
+
+                    b.Navigation("TblPaymentType");
                 });
 
             modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblFoodOrderMapping", b =>
@@ -426,6 +482,8 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                         .WithMany("TblFoodOrderMapping")
                         .HasForeignKey("TblFoodOrderId")
                         .HasConstraintName("FK_tblFoodOrderMapping_tblFoodOrderID");
+
+                    b.Navigation("TblFoodOrder");
                 });
 
             modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblOrderPayment", b =>
@@ -433,17 +491,26 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                     b.HasOne("MT.OnlineRestaurant.DataLayer.Context.TblFoodOrder", "TblFoodOrder")
                         .WithMany("TblOrderPayment")
                         .HasForeignKey("TblFoodOrderId")
-                        .HasConstraintName("FK_tblOrderPayment_tblFoodOrderID");
+                        .HasConstraintName("FK_tblOrderPayment_tblFoodOrderID")
+                        .IsRequired();
 
                     b.HasOne("MT.OnlineRestaurant.DataLayer.Context.TblPaymentStatus", "TblPaymentStatus")
                         .WithMany("TblOrderPayment")
                         .HasForeignKey("TblPaymentStatusId")
-                        .HasConstraintName("FK_tblOrderPayment_tblPaymentStatusID");
+                        .HasConstraintName("FK_tblOrderPayment_tblPaymentStatusID")
+                        .IsRequired();
 
                     b.HasOne("MT.OnlineRestaurant.DataLayer.Context.TblPaymentType", "TblPaymentType")
                         .WithMany("TblOrderPayment")
                         .HasForeignKey("TblPaymentTypeId")
-                        .HasConstraintName("FK_tblOrderPayment_tblPaymentType");
+                        .HasConstraintName("FK_tblOrderPayment_tblPaymentType")
+                        .IsRequired();
+
+                    b.Navigation("TblFoodOrder");
+
+                    b.Navigation("TblPaymentStatus");
+
+                    b.Navigation("TblPaymentType");
                 });
 
             modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblTableOrder", b =>
@@ -457,6 +524,10 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                         .WithMany("TblTableOrder")
                         .HasForeignKey("TblPaymentTypeId")
                         .HasConstraintName("FK_tblTableOrder_tblPaymentTypeID");
+
+                    b.Navigation("TblOrderStatus");
+
+                    b.Navigation("TblPaymentType");
                 });
 
             modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblTableOrderMapping", b =>
@@ -465,6 +536,41 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                         .WithMany("TblTableOrderMapping")
                         .HasForeignKey("TblTableOrderId")
                         .HasConstraintName("FK_tblTableOrderMapping_tblTableOrderID");
+
+                    b.Navigation("TblTableOrder");
+                });
+
+            modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblFoodOrder", b =>
+                {
+                    b.Navigation("TblFoodOrderMapping");
+
+                    b.Navigation("TblOrderPayment");
+                });
+
+            modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblOrderStatus", b =>
+                {
+                    b.Navigation("TblFoodOrder");
+
+                    b.Navigation("TblTableOrder");
+                });
+
+            modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblPaymentStatus", b =>
+                {
+                    b.Navigation("TblOrderPayment");
+                });
+
+            modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblPaymentType", b =>
+                {
+                    b.Navigation("TblFoodOrder");
+
+                    b.Navigation("TblOrderPayment");
+
+                    b.Navigation("TblTableOrder");
+                });
+
+            modelBuilder.Entity("MT.OnlineRestaurant.DataLayer.Context.TblTableOrder", b =>
+                {
+                    b.Navigation("TblTableOrderMapping");
                 });
 #pragma warning restore 612, 618
         }

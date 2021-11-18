@@ -1,16 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using LoggingManagement;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MT.OnlineRestaurant.BusinessLayer;
+using MT.OnlineRestaurant.BusinessLayer.interfaces;
+using MT.OnlineRestaurant.DataLayer;
+using MT.OnlineRestaurant.DataLayer.Context;
+using MT.OnlineRestaurant.DataLayer.interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MT.OnlineRestaurant.OrderAPI
 {
@@ -26,6 +34,27 @@ namespace MT.OnlineRestaurant.OrderAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IPlaceOrderActions, PlaceOrderActions>();
+            services.AddTransient<IPlaceOrderDbAccess, PlaceOrderDbAccess>();
+            services.AddTransient<IPaymentActions, PaymentActions>();
+            services.AddTransient<IPaymentDbAccess, PaymentDbAccess>();
+            services.AddTransient<IBookYourTableBusiness, BookYourTableBusiness>();
+            services.AddTransient<IBookYourTableRepository, BookYourTableRepository>();
+            services.AddTransient<ILogService, LoggerService>();
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+
+            services.AddDbContext<OrderManagementContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString"),
+               b => b.MigrationsAssembly("MT.OnlineRestaurant.DataLayer")));
+
+            services.AddSingleton(mapper);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

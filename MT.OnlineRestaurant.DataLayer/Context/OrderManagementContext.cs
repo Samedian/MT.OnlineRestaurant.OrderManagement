@@ -39,7 +39,7 @@ namespace MT.OnlineRestaurant.DataLayer.Context
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 //optionsBuilder.UseSqlServer("Server=tcp:capstoneteam1server.database.windows.net,1433;Initial Catalog=OrderManagement;Persist Security Info=False;user id=cpadmin;password=Mindtree@12;");
-                optionsBuilder.UseSqlServer(DbConnectionString);
+                optionsBuilder.UseSqlServer("Data Source = vssqlkibana\\sqlexpress; Initial Catalog = RestaurantOrderManagement; Integrated Security = True");
             }
         }
 

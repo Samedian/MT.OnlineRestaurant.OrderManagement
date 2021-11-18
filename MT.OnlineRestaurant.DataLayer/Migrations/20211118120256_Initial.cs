@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MT.OnlineRestaurant.DataLayer.Migrations
 {
-    public partial class OrderInitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,11 +11,11 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "LoggingInfo",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true, defaultValueSql: "('')"),
-                    ControllerName = table.Column<string>(maxLength: 250, nullable: true, defaultValueSql: "('')"),
-                    ActionName = table.Column<string>(maxLength: 250, nullable: true, defaultValueSql: "('')"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "('')"),
+                    ControllerName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true, defaultValueSql: "('')"),
+                    ActionName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true, defaultValueSql: "('')"),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "('')")
                 },
                 constraints: table =>
@@ -28,11 +27,11 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblOrderStatus",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Status = table.Column<string>(maxLength: 50, nullable: false, defaultValueSql: "((0))"),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, defaultValueSql: "((0))"),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -45,11 +44,11 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblPaymentStatus",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Status = table.Column<string>(maxLength: 50, nullable: false, defaultValueSql: "((0))"),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, defaultValueSql: "((0))"),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -62,11 +61,11 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblPaymentType",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(maxLength: 50, nullable: false, defaultValueSql: "((0))"),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, defaultValueSql: "((0))"),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -79,16 +78,16 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblFoodOrder",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    tblCustomerID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    tblRestaurantID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    tblOrderStatusID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    tblPaymentTypeID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    DeliveryAddress = table.Column<string>(nullable: false, defaultValueSql: "('')"),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    tblCustomerID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    tblRestaurantID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    tblOrderStatusID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    tblPaymentTypeID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DeliveryAddress = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValueSql: "('')"),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -113,17 +112,17 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblTableOrder",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    tblCustomerID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    tblRestaurantID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    tblCustomerID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    tblRestaurantID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
                     FromDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     ToDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
-                    tblOrderStatusID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    tblPaymentTypeID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: true),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    tblOrderStatusID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    tblPaymentTypeID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -148,14 +147,14 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblFoodOrderMapping",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    tblFoodOrderID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    tblMenuID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    Active = table.Column<bool>(nullable: false),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    tblFoodOrderID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    tblMenuID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -174,16 +173,16 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblOrderPayment",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    tblFoodOrderID = table.Column<int>(nullable: false),
-                    tblPaymentTypeID = table.Column<int>(nullable: false),
-                    Remarks = table.Column<string>(nullable: false, defaultValueSql: "('')"),
-                    TransactionID = table.Column<string>(maxLength: 20, nullable: false, defaultValueSql: "('0000000000')"),
-                    tblCustomerID = table.Column<int>(nullable: false),
-                    tblPaymentStatusID = table.Column<int>(nullable: false),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    tblFoodOrderID = table.Column<int>(type: "int", nullable: false),
+                    tblPaymentTypeID = table.Column<int>(type: "int", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValueSql: "('')"),
+                    TransactionID = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false, defaultValueSql: "('0000000000')"),
+                    tblCustomerID = table.Column<int>(type: "int", nullable: false),
+                    tblPaymentStatusID = table.Column<int>(type: "int", nullable: false),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },
@@ -214,14 +213,14 @@ namespace MT.OnlineRestaurant.DataLayer.Migrations
                 name: "tblTableOrderMapping",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    tblTableOrderID = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    TableNo = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
-                    Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    Active = table.Column<bool>(nullable: false),
-                    UserCreated = table.Column<int>(nullable: false),
-                    UserModified = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    tblTableOrderID = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    TableNo = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    UserCreated = table.Column<int>(type: "int", nullable: false),
+                    UserModified = table.Column<int>(type: "int", nullable: false),
                     RecordTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))"),
                     RecordTimeStampCreated = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "((0))")
                 },

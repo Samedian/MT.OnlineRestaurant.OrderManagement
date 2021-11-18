@@ -57,12 +57,11 @@ namespace MT.OnlineRestaurant.DataLayer
             stringBuilder.Append("exec UpdatePaymentStatus @ID, @TransactionID, ");
             stringBuilder.Append("@tblPaymentStatusID, @ReturnValue OUT");
 
-            _context.Database.ExecuteSqlCommand(stringBuilder.ToString(), 
-                ID,
-                TransactionID,
-                tblPaymentStatusID,
-                ReturnValue);
-
+            _context.Database.ExecuteSqlRaw(stringBuilder.ToString(),
+                    ID,
+                    TransactionID,
+                    tblPaymentStatusID,
+                    ReturnValue);
             _context.SaveChanges();
             return (int)ReturnValue.Value;
         }
